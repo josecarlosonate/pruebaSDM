@@ -9,6 +9,7 @@ app.use(express.json());
 
 //Rutas
 app.use(require('./routes/users'));
+app.use(require('./routes/books'));
 
 //Iniciar servidor
 app.listen(app.get('port'), () => {
