@@ -17,7 +17,6 @@ import { AlertasService } from "../../servicios/alertas/alertas.service";
 export class NuevoUsuarioComponent implements OnInit {
 
   nuevoForm = new FormGroup({
-    id: new FormControl(''),
     name: new FormControl(''),
     document: new FormControl(''),
     state: new FormControl(''),

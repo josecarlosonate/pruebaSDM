@@ -36,10 +36,10 @@ router.post('/api/user/add', (req, res) => {
                 name,
                 document,
                 state,
-                created_at,
-                updated_at
+                create_at,
+                update_at
             )
-        VALUES($1, $2, $3, $4, $5) RETURNING id
+        VALUES(?, ?, ?, ?, ?)
     `;
     mysqlConnection.query(query, [name, document, state, create_at, update_at], (err, rows, fields) => {
         if (!err) {
