@@ -26,17 +26,22 @@ router.get('/api/book/:id', (req, res) => {
     });
 });
 
-/* Ingresar  usuario */
-router.post('/api/user/add', (req, res) => {
-    let { id, name, document, create_at, update_at } = req.body;
-    if (!id) {
-        id = 0;
-    }
-    console.log(req.body);
-    const query = `
-        CALL userAddOrEdit (?, ?, ?, ?, ?);
-    `;
-    mysqlConnection.query(query, [id, name, document, create_at, update_at], (err, rows, fields) => {
+/* Ingresar  libro */
+router.post('/api/book/add', (req, res) => {
+    let { name, description, stock, available, create_at, update_at } = req.body;
+
+    const query = `  
+        INSERT INTO
+            books(
+                name,
+                description,
+                stock,
+                available,
+                created_at,
+                updated_at
+            )
+        VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id  `;
+    mysqlConnection.query(query, [name, description, stock, available, create_at, update_at], (err, rows, fields) => {
         if (!err) {
             res.json({ Code: "Ok", Status: 'Realizado con exito' });
         } else {

@@ -34,9 +34,9 @@ router.post('/api/user/add', (req, res) => {
     }
     console.log(req.body);
     const query = `
-        CALL userAddOrEdit (?, ?, ?, ?, ?);
+        CALL userAddOrEdit (?, ?, ?, ?, ?, ?);
     `;
-    mysqlConnection.query(query, [id, name, document, create_at, update_at], (err, rows, fields) => {
+    mysqlConnection.query(query, [id, name, document, state, create_at, update_at], (err, rows, fields) => {
         if (!err) {
             res.json({ Code: "Ok", Status: 'Realizado con exito' });
         } else {
@@ -47,10 +47,10 @@ router.post('/api/user/add', (req, res) => {
 
 /* Editar usuario */
 router.put('/api/user/edit/:id', (req, res) => {
-    const { name, document, create_at, update_at } = req.body;
+    const { name, document, state, create_at, update_at } = req.body;
     const { id } = req.params;
     const query = 'CALL userAddOrEdit (?, ?, ?, ?, ?);';
-    mysqlConnection.query(query, [id, name, document, create_at, update_at], (err, rows, fields) => {
+    mysqlConnection.query(query, [id, name, document, state, create_at, update_at], (err, rows, fields) => {
         if (!err) {
             res.json({ Code: "Ok", Status: 'Actualizado con exito' });
         } else {
