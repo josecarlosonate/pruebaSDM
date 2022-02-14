@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ListaUsuariosI } from "../../modelos/listaUsuarios.interface";
 import { UsuarioI } from "../../modelos/usuario.interface";
+import { ResponseI } from "../../modelos/response.interface";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs';
 
@@ -23,6 +24,18 @@ export class ApiService {
   getSingleUsuario(id: string | null):Observable<UsuarioI>{
     let direccion = this.url + "user/"+id;
     return this.http.get<UsuarioI>(direccion);
+  }
+
+  /* Actualizar usuario */
+  putUsuario(form:UsuarioI,id:string):Observable<ResponseI>{
+    let direccion = this.url + "user/edit/"+id;
+    return this.http.put<ResponseI>(direccion,form);
+  }
+
+  /* Eliminar usuario (inactivar cambiar estado) */
+  deleteUser(id:string):Observable<ResponseI>{
+    let direccion = this.url + "user/delet/" + id;
+    return this.http.delete<ResponseI>(direccion);
   }
 
 }

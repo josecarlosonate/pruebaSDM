@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { UsuarioI } from "../../modelos/usuario.interface";
 import { ApiService } from '../../servicios/api/api.service';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-editar-usuario',
@@ -22,7 +23,7 @@ export class EditarUsuarioComponent implements OnInit {
     update_at: new FormControl('')
   });
   
-  constructor(private activaterouter:ActivatedRoute, private router:Router, private api:ApiService) { }
+  constructor(private activaterouter:ActivatedRoute, private router:Router, private api:ApiService,private _location: Location) { }
   
   ngOnInit(): void {
     let usuarioid = this.activaterouter.snapshot.paramMap.get('id');
@@ -36,13 +37,21 @@ export class EditarUsuarioComponent implements OnInit {
         'document': this.datosUsuario.document,
         'state': this.datosUsuario.state,
         'create_at': this.datosUsuario.create_at,
-        'update_at': Date.now()
+        'update_at': (Date.now() / 1000)
       });
     })
   }
 
   postForm(form:UsuarioI){
-    console.log(form);
+    let id = form.id;
+    this.api.putUsuario(form,id).subscribe(data =>{
+      console.log(data);
+    })
+    
+  }
+
+  goBack(){
+    this._location.back();
   }
 
 }

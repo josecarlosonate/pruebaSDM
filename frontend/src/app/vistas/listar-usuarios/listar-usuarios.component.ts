@@ -23,8 +23,15 @@ export class ListarUsuariosComponent implements OnInit {
     this.router.navigate(['editarUsuario',id]);
   }
 
+  eliminarUsuario(id: any){
+    this.api.deleteUser(id).subscribe(data => {
+      location.reload();
+    })
+  }
+
   nuevoUsuario(){
     this.router.navigate(['nuevoUsuario']);
   }
+
 
 }

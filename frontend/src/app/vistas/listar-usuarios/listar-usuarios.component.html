@@ -21,7 +21,7 @@
                 <th scope="col">{{usuario.document}}</th>
                 <th scope="col" class="d-flex">
                     <button class="btn btn-outline-success" (click)="editarUsuario(usuario.id)">Editar</button>&nbsp;&nbsp;
-                    <button class="btn btn-outline-danger">Eliminar</button>
+                    <button class="btn btn-outline-danger" (click)="eliminarUsuario(usuario.id)">Eliminar</button>
                 </th>
             </tr>
         </tbody>
