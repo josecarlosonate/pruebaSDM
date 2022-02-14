@@ -28,15 +28,20 @@ router.get('/api/user/:id', (req, res) => {
 
 /* Ingresar  usuario */
 router.post('/api/user/add', (req, res) => {
-    let { id, name, document, create_at, update_at } = req.body;
-    if (!id) {
-        id = 0;
-    }
+    let { name, document, state, create_at, update_at } = req.body;
     console.log(req.body);
     const query = `
-        CALL userAddOrEdit (?, ?, ?, ?, ?, ?);
+        INSERT INTO
+            users(
+                name,
+                document,
+                state,
+                created_at,
+                updated_at
+            )
+        VALUES($1, $2, $3, $4, $5) RETURNING id
     `;
-    mysqlConnection.query(query, [id, name, document, state, create_at, update_at], (err, rows, fields) => {
+    mysqlConnection.query(query, [name, document, state, create_at, update_at], (err, rows, fields) => {
         if (!err) {
             res.json({ Code: "Ok", Status: 'Realizado con exito' });
         } else {

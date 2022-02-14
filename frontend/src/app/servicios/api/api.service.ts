@@ -38,4 +38,10 @@ export class ApiService {
     return this.http.delete<ResponseI>(direccion);
   }
 
+  /* Insertar nuevo usuario */
+  postUser(form:UsuarioI):Observable<ResponseI>{
+    let direccion = this.url + "user/add/";
+    return this.http.post<ResponseI>(direccion,form);
+  }
+
 }

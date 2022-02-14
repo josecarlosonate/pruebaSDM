@@ -1,1 +1,30 @@
-<p>nuevo-usuario works!</p>
+<app-header></app-header>
+
+<div class="container">
+    <h3>Registro de nuevo usuario</h3>
+    <form [formGroup]="nuevoForm" (ngSubmit)="postForm(nuevoForm.value)">
+        <div class=" form-group mt-2 ">
+            <label for=" ">Nombre</label>
+            <input type="text" class="form-control " placeholder="Nombre de usuario" formControlName="name">
+        </div>
+        <div class="form-group mt-2 ">
+            <label for=" ">Numero de Identificación</label>
+            <input type="number" class="form-control" formControlName="document">
+        </div>
+        <div class="form-group mt-2 ">
+            <label for=" ">Estado</label>
+            <select id=" " class="form-control" formControlName="state">
+                <option value="1" selected="true" >Activo</option>
+                <option value="0">Inactivo</option>                
+            </select>
+        </div>
+        <br><br>
+        <div class="d-flex ">
+            <button type="submit " class="btn btn-primary ">Guardar</button> &nbsp;&nbsp;
+            <button type="button " class="btn btn-secondary " (click)="goBack() ">Regresar</button>
+        </div>
+
+    </form>
+</div>
+
+<app-footer></app-footer>
