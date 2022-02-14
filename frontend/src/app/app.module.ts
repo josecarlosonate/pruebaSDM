@@ -14,6 +14,9 @@ import { FooterComponent } from './plantillas/footer/footer.component';
 
 //
 import { ApiService } from "./servicios/api/api.service";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { ApiService } from "./servicios/api/api.service";
     AppRoutingModule, 
     ReactiveFormsModule, 
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [ ApiService ],
   bootstrap: [AppComponent]

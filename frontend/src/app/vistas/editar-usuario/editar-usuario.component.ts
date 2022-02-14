@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { UsuarioI } from "../../modelos/usuario.interface";
 import { ApiService } from '../../servicios/api/api.service';
+import { ResponseI } from '../../modelos/response.interface';
+import { AlertasService } from "../../servicios/alertas/alertas.service";
+
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Location } from '@angular/common';
 
@@ -23,7 +26,7 @@ export class EditarUsuarioComponent implements OnInit {
     update_at: new FormControl('')
   });
   
-  constructor(private activaterouter:ActivatedRoute, private router:Router, private api:ApiService,private _location: Location) { }
+  constructor(private activaterouter:ActivatedRoute, private router:Router, private api:ApiService,private _location: Location, private alertas:AlertasService) { }
   
   ngOnInit(): void {
     let usuarioid = this.activaterouter.snapshot.paramMap.get('id');
@@ -45,7 +48,12 @@ export class EditarUsuarioComponent implements OnInit {
   postForm(form:UsuarioI){
     let id = form.id;
     this.api.putUsuario(form,id).subscribe(data =>{
-      console.log(data);
+      let respuesta:ResponseI = data;
+      if(respuesta.Code == 'Ok'){
+        this.alertas.showSuccess('Datos actualizados con exito','Ok');
+      }else{
+        this.alertas.showError(respuesta.Status, 'Error');
+      }
     })
     
   }

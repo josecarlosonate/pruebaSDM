@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../../servicios/api/api.service";
 import { Router } from "@angular/router";
 import { ListaUsuariosI } from "../../modelos/listaUsuarios.interface";
+import { ResponseI } from '../../modelos/response.interface';
+import { AlertasService } from "../../servicios/alertas/alertas.service";
 
 @Component({
   selector: 'app-listar-usuarios',
@@ -11,7 +13,7 @@ import { ListaUsuariosI } from "../../modelos/listaUsuarios.interface";
 export class ListarUsuariosComponent implements OnInit {
 
   usuarios: ListaUsuariosI[] = [];
-  constructor(private api:ApiService, private router:Router) { }
+  constructor(private api:ApiService, private router:Router, private alertas:AlertasService) { }
   
   ngOnInit(): void {
     this.api.getAllUsers().subscribe(data => {
@@ -25,7 +27,15 @@ export class ListarUsuariosComponent implements OnInit {
 
   eliminarUsuario(id: any){
     this.api.deleteUser(id).subscribe(data => {
-      location.reload();
+      let respuesta:ResponseI = data;
+      if(respuesta.Code == 'Ok'){
+        this.alertas.showSuccess('Eliminado con exito','Ok');
+        setTimeout(function(){
+          location.reload();
+        },1000);        
+      }else{
+        this.alertas.showError(respuesta.Status, 'Error');
+      }
     })
   }
 
