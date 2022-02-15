@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ListaLibrosI } from "../../modelos/listaLibros.interface";
 import { ListaUsuariosI } from "../../modelos/listaUsuarios.interface";
 import { UsuarioI } from "../../modelos/usuario.interface";
 import { ResponseI } from "../../modelos/response.interface";
@@ -42,6 +43,12 @@ export class ApiService {
   postUser(form:UsuarioI):Observable<ResponseI>{
     let direccion = this.url + "user/add/";
     return this.http.post<ResponseI>(direccion,form);
+  }
+
+  /* Obtener todos los libros */
+  getAllBooks():Observable<ListaLibrosI[]>{
+    let direccion = this.url + "book";
+    return this.http.get<ListaLibrosI[]>(direccion);
   }
 
 }

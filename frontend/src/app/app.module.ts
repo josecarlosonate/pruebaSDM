@@ -17,13 +17,17 @@ import { ApiService } from "./servicios/api/api.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { ListarLibrosComponent } from './vistas/listar-libros/listar-libros.component';
+import { ListarReservasComponent } from './vistas/listar-reservas/listar-reservas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    routingComponents
+    routingComponents,
+    ListarLibrosComponent,
+    ListarReservasComponent
   ],
   imports: [
     BrowserModule,
