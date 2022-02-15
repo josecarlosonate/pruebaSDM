@@ -19,6 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ListarLibrosComponent } from './vistas/listar-libros/listar-libros.component';
 import { ListarReservasComponent } from './vistas/listar-reservas/listar-reservas.component';
+import { NuevoLibroComponent } from './vistas/nuevo-libro/nuevo-libro.component';
+import { EditarLibroComponent } from './vistas/editar-libro/editar-libro.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ListarReservasComponent } from './vistas/listar-reservas/listar-reserva
     FooterComponent,
     routingComponents,
     ListarLibrosComponent,
-    ListarReservasComponent
+    ListarReservasComponent,
+    NuevoLibroComponent,
+    EditarLibroComponent
   ],
   imports: [
     BrowserModule,

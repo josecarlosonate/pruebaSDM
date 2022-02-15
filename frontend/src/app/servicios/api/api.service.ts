@@ -51,4 +51,16 @@ export class ApiService {
     return this.http.get<ListaLibrosI[]>(direccion);
   }
 
+  /* Eliminar libro */
+  deleteBook(id:string):Observable<ResponseI>{
+    let direccion = this.url + "book/delet/" + id;
+    return this.http.delete<ResponseI>(direccion);
+  }
+
+  /* Insertar libro */
+  postBook(form:UsuarioI):Observable<ResponseI>{
+    let direccion = this.url + "book/add";
+    return this.http.post<ResponseI>(direccion,form);
+  }
+
 }

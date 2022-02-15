@@ -50,7 +50,7 @@ router.post('/api/book/add', (req, res) => {
     });
 });
 
-/* Editar usuario */
+/* Editar libro */
 router.put('/api/user/edit/:id', (req, res) => {
     const { name, document, create_at, update_at } = req.body;
     const { id } = req.params;
@@ -64,10 +64,10 @@ router.put('/api/user/edit/:id', (req, res) => {
     });
 });
 
-/* Eliminar usuario */
-router.delete('/api/user/delet/:id', (req, res) => {
+/* Eliminar libro */
+router.delete('/api/book/delet/:id', (req, res) => {
     const { id } = req.params;
-    mysqlConnection.query('DELETE FROM users WHERE id = ?', [id], (err, rows, fields) => {
+    mysqlConnection.query('DELETE FROM books WHERE id = ?', [id], (err, rows, fields) => {
         if (!err) {
             res.json({ Code: "Ok", Status: 'Eliminado con exito' });
         } else {

@@ -6,6 +6,8 @@ import { NuevoUsuarioComponent } from './vistas/nuevo-usuario/nuevo-usuario.comp
 import { EditarUsuarioComponent } from "./vistas/editar-usuario/editar-usuario.component";
 import { ListarLibrosComponent } from "./vistas/listar-libros/listar-libros.component";
 import { ListarReservasComponent } from "./vistas/listar-reservas/listar-reservas.component";
+import { NuevoLibroComponent } from "./vistas/nuevo-libro/nuevo-libro.component";
+import { EditarLibroComponent } from "./vistas/editar-libro/editar-libro.component";
 
 const routes: Routes = [
   {path:'', redirectTo:'dashboard', pathMatch:'full'},
@@ -14,7 +16,9 @@ const routes: Routes = [
   {path: 'nuevoUsuario', component:NuevoUsuarioComponent},
   {path: 'editarUsuario/:id', component: EditarUsuarioComponent},
   {path: 'listarLibros', component:ListarLibrosComponent},
-  {path: 'listarReservas', component:ListarReservasComponent}
+  {path: 'listarReservas', component:ListarReservasComponent},
+  {path: 'nuevoLibro', component:NuevoLibroComponent},
+  {path: 'editarLibro/:id', component: EditarLibroComponent}
 ];
 
 @NgModule({
@@ -28,4 +32,6 @@ export const routingComponents = [
   ListarUsuariosComponent,
   EditarUsuarioComponent,
   ListarLibrosComponent,
-  ListarReservasComponent]
+  ListarReservasComponent,
+  NuevoLibroComponent,
+  EditarLibroComponent]

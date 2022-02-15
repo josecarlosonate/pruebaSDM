@@ -22,15 +22,25 @@ export class ListarLibrosComponent implements OnInit {
   }
 
   nuevoLibro(){
-    this.router.navigate(['nuevoUsuario']);
+    this.router.navigate(['nuevoLibro']);
   }
 
   editarLibro(id:any){
-    this.router.navigate(['nuevoUsuario']);
+    this.router.navigate(['editarLibro',id]);
   }
 
   eliminarLibro(id:any){
-    this.router.navigate(['nuevoUsuario']);
+    this.api.deleteBook(id).subscribe(data => {
+      let respuesta:ResponseI = data;
+      if(respuesta.Code == 'Ok'){
+        this.alertas.showSuccess('Eliminado con exito','Ok');
+        setTimeout(function(){
+          location.reload();
+        },1000);        
+      }else{
+        this.alertas.showError(respuesta.Status, 'Error');
+      }
+    });
   }
 
 }

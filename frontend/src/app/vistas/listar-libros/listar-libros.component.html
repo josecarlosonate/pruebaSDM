@@ -10,15 +10,19 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">NOMBRE</th>
-                <th scope="col">IDENTIFICACION</th>
+                <th scope="col">DESCRIPCION</th>
+                <th scope="col"># EJEMPLARES</th>
+                <th scope="col"># DISPONIBLES</th>
                 <th scope="col">ACCIONES</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let libro of libros">
-                <th>{{libro.id}}</th>
+                <td>{{libro.id}}</td>
                 <td>{{libro.name}}</td>
                 <td>{{libro.description}}</td>
+                <td>{{libro.stock}}</td>
+                <td>{{libro.available}}</td>
                 <td>
                     <button class="btn btn-outline-success" (click)="editarLibro(libro.id)">Editar</button>&nbsp;&nbsp;
                     <button class="btn btn-outline-danger" (click)="eliminarLibro(libro.id)">Eliminar</button>
